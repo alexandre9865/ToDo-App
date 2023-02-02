@@ -52,7 +52,7 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
                 e?.let {
 
                     val action = ChartFragmentDirections
-                        .actionNavigationNotificationsToDetailChartFragment(it.data.toString())
+                        .actionNavigationNotificationsToDetailChartFragment(it.data.toString().toInt())
                     Navigation.findNavController(requireView()).navigate(action)
                 }
             }
@@ -73,29 +73,29 @@ class ChartFragment : Fragment(R.layout.fragment_chart) {
         var businessColor = "#FFFFFF"
 
         list.forEach {
-            when (it.type) {
-                "School" -> {
-                    school++
-                    schoolColor = it.typeColor
-                }
-                "Business" -> {
+            when (it.categoryId) { //TODO AUTOMATE IT!
+                1 -> {
                     business++
-                    businessColor = it.typeColor
+                    businessColor = it.categoryColor
                 }
-                "Shopping" -> {
+                2 -> {
+                    school++
+                    schoolColor = it.categoryColor
+                }
+                3 -> {
                     shopping++
-                    shoppingColor = it.typeColor
+                    shoppingColor = it.categoryColor
                 }
-                "Sport" -> {
+                4 -> {
                     sport++
-                    sportColor = it.typeColor
+                    sportColor = it.categoryColor
                 }
             }
         }
 
         val pieEntry = mutableListOf<PieEntry>()
-        pieEntry.add(PieEntry(school, "School", "School"))
         pieEntry.add(PieEntry(business, "Business", "Business"))
+        pieEntry.add(PieEntry(school, "School", "School"))
         pieEntry.add(PieEntry(sport, "Sport", "Sport"))
         pieEntry.add(PieEntry(shopping, "Shopping", "Shopping"))
 

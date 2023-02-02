@@ -42,7 +42,7 @@
         android:label="@string/title_chart_detail"
         tools:layout="@layout/fragment_detail_chart" >
         <argument
-            android:name="type"
-            app:argType="string" />
+            android:name="category_id"
+            app:argType="integer" />
     </fragment>
 </navigation>

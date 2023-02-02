@@ -14,8 +14,8 @@ interface ToDoDao {
     @Query("SELECT *  FROM todo ORDER BY id DESC")
     fun getAllToDo(): Flow<List<ToDoEntity>>
 
-    @Query("SELECT *  FROM todo WHERE type = :type")
-    fun getToDoByType(type: String): Flow<List<ToDoEntity>>
+    @Query("SELECT *  FROM todo WHERE categoryId = :categoryId")
+    fun getToDoByCategory(categoryId: Int): Flow<List<ToDoEntity>>
 
     @Query("SELECT * FROM todo WHERE id = :id")
     suspend fun getToDoById(id: Int): ToDoEntity

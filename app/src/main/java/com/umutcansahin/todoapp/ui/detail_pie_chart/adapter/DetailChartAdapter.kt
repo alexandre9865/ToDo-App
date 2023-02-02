@@ -25,12 +25,12 @@ class DetailChartAdapter(val toDoList: ArrayList<ToDoUIModel>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: DetailChartViewHolder, position: Int) {
         holder.binding.recyclerNameTextView.text = toDoList[position].name
-        holder.binding.recyclerTypeTextView.text = toDoList[position].type
+        holder.binding.recyclerTypeTextView.text = toDoList[position].categoryId.toString()
         holder.binding.recyclerDateTextView.text = toDoList[position].timestamp.toFormat(
             Constants.CURRENT_DATE_FORMAT
         )
 
-        holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+        holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].categoryColor))
 
         if (toDoList[position].isDone) {
             holder.binding.recyclerNameTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
@@ -52,7 +52,7 @@ class DetailChartAdapter(val toDoList: ArrayList<ToDoUIModel>) : RecyclerView.Ad
             holder.binding.recyclerDateTextView.paintFlags = Paint.ANTI_ALIAS_FLAG
 
 
-            holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+            holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].categoryColor))
         }
     }
 

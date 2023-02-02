@@ -12,8 +12,8 @@ class ToDoRepositoryImpl(
         return dao.getAllToDo()
     }
 
-    override fun getToDoByType(type: String): Flow<List<ToDoEntity>> {
-        return dao.getToDoByType(type = type)
+    override fun getToDoByCategory(categoryId: Int): Flow<List<ToDoEntity>> {
+        return dao.getToDoByCategory(categoryId = categoryId)
     }
 
     override suspend fun insertToDo(toDo: ToDoEntity) {

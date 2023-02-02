@@ -47,7 +47,8 @@ class HomeViewModel @Inject constructor(
                 name = toDoUIModel.name,
                 isInsert = false,
                 id = toDoUIModel.id,
-                type = toDoUIModel.type,
+                categoryId = toDoUIModel.categoryId,
+                note = toDoUIModel.note,
                 date = toDoUIModel.timestamp,
                 isDone = toDoUIModel.isDone
             )

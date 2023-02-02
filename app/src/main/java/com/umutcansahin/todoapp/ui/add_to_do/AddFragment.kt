@@ -26,7 +26,8 @@ class AddFragment : Fragment(R.layout.fragment_add) {
 
     private var isInsert = true
     private var id: Int? = null
-    private var type: String? = null
+    private var categoryId: Int? = null
+    private var note: String? = null
     private var selectedDate = Date()
 
 
@@ -64,13 +65,11 @@ class AddFragment : Fragment(R.layout.fragment_add) {
         binding.saveButton.icon =
             ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_edit_24)
 
-        when (entity.type) {
-
-            "Business" -> binding.radioButtonBusiness.isChecked = true
-            "School" -> binding.radioButtonSchool.isChecked = true
-            "Shopping" -> binding.radioButtonShopping.isChecked = true
-            "Sport" -> binding.radioButtonSports.isChecked = true
-
+        when (entity.categoryId) { //todo change descriptions!
+            1 -> binding.radioButtonBusiness.isChecked = true
+            2 -> binding.radioButtonSchool.isChecked = true
+            3 -> binding.radioButtonShopping.isChecked = true
+            4 -> binding.radioButtonSports.isChecked = true
         }
     }
 
@@ -81,9 +80,9 @@ class AddFragment : Fragment(R.layout.fragment_add) {
                 name = binding.nameEditText.text.toString(),
                 isInsert = isInsert,
                 id = id,
-                type = type,
+                categoryId = categoryId,
+                note = note,
                 date = selectedDate
-
             )
             findNavController().popBackStack()
         }
@@ -107,14 +106,18 @@ class AddFragment : Fragment(R.layout.fragment_add) {
             }
             datePicker.show(parentFragmentManager, Constants.TAG_DATE_PICKER);
         }
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+        binding.radioGroup.setOnCheckedChangeListener { group, checkedId -> //todo change it to a spinner to automate the data
 
             when (checkedId) {
 
-                R.id.radioButtonBusiness -> type = radioButtonBusiness.text.toString()
-                R.id.radioButtonSchool -> type = radioButtonSchool.text.toString()
-                R.id.radioButtonShopping -> type = radioButtonShopping.text.toString()
-                R.id.radioButtonSports -> type = radioButtonSports.text.toString()
+//                R.id.radioButtonBusiness -> type = radioButtonBusiness.text.toString()
+//                R.id.radioButtonSchool -> type = radioButtonSchool.text.toString()
+//                R.id.radioButtonShopping -> type = radioButtonShopping.text.toString()
+//                R.id.radioButtonSports -> type = radioButtonSports.text.toString()
+                R.id.radioButtonBusiness -> categoryId = 1
+                R.id.radioButtonSchool -> categoryId = 2
+                R.id.radioButtonShopping -> categoryId = 3
+                R.id.radioButtonSports -> categoryId = 4
 
             }
         }

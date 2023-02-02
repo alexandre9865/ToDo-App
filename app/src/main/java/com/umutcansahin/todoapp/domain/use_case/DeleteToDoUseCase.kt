@@ -14,8 +14,9 @@ class DeleteToDoUseCase @Inject constructor(
         return repository.deleteToDo(
             toDoEntity = ToDoEntity(
                 id = toDoUIModel.id,
+                categoryId = toDoUIModel.categoryId,
                 name = toDoUIModel.name,
-                type = toDoUIModel.type,
+                note = toDoUIModel.note,
                 isDone = toDoUIModel.isDone,
                 timestamp = toDoUIModel.timestamp
             )

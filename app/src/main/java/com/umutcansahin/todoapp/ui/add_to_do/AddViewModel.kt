@@ -22,14 +22,15 @@ class AddViewModel @Inject constructor(
     private val _singleToDo = MutableLiveData<ToDoUIModel>()
     val singleToDo: LiveData<ToDoUIModel> = _singleToDo
 
-    fun insertOrUpdate(name: String,isInsert: Boolean,id: Int?,type: String?,date: Date) {
+    fun insertOrUpdate(name: String,isInsert: Boolean,id: Int?,categoryId: Int?,note: String?,date: Date) {
         viewModelScope.launch(Dispatchers.IO) {
 
             insertOrUpdateToDoUseCase(
                 name = name,
                 isInsert = isInsert,
                 id = id,
-                type = type,
+                categoryId = categoryId,
+                note = note,
                 date = date,
                 isDone = false
             )

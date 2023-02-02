@@ -19,15 +19,15 @@ class DetailChartFragment : Fragment(R.layout.fragment_detail_chart) {
     private val viewModel: DetailChartViewModel by viewModels()
 
     private val detailChartAdapter = DetailChartAdapter(arrayListOf())
-    private var type: String? = null
+    private var categoryId: Int? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            type = DetailChartFragmentArgs.fromBundle(it).type
+            categoryId = DetailChartFragmentArgs.fromBundle(it).categoryId
         }
-        viewModel.getToDoByType(type!!)
+        viewModel.getToDoByCategory(categoryId!!)
         observeEvents()
         initViews()
     }

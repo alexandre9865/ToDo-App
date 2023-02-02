@@ -3,7 +3,8 @@ package com.umutcansahin.todoapp.di
 import android.app.Application
 import androidx.room.Room
 import com.umutcansahin.todoapp.utils.Constants
-import com.umutcansahin.todoapp.data.local.ToDoDatabase
+import com.umutcansahin.todoapp.data.local.AppDatabase
+import com.umutcansahin.todoapp.data.local.AppDatabase.Migrations
 import com.umutcansahin.todoapp.data.repository.ToDoRepositoryImpl
 import com.umutcansahin.todoapp.domain.mapper.ToDoEntityMapper
 import com.umutcansahin.todoapp.domain.repository.ToDoRepository
@@ -19,17 +20,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideToDoDatabase(app: Application): ToDoDatabase {
+    fun provideAppDatabase(app: Application): AppDatabase {
         return Room.databaseBuilder(
             app,
-            ToDoDatabase::class.java,
+            AppDatabase::class.java,
             Constants.DATABASE_NAME
-        ).build()
+        ).addMigrations(Migrations.M_1_2).build()
     }
 
     @Provides
     @Singleton
-    fun provideToDoRepository(db: ToDoDatabase,): ToDoRepository {
+    fun provideToDoRepository(db: AppDatabase,): ToDoRepository {
         return ToDoRepositoryImpl(db.toDoDao)
     }
 

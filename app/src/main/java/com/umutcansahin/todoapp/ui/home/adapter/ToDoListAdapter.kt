@@ -38,11 +38,11 @@ class ToDoListAdapter(val toDoList: ArrayList<ToDoUIModel>) :
     override fun onBindViewHolder(holder: ToDoListViewHolder, position: Int) {
 
         holder.binding.recyclerNameTextView.text = toDoList[position].name
-        holder.binding.recyclerTypeTextView.text = toDoList[position].type
+        holder.binding.recyclerTypeTextView.text = toDoList[position].categoryId.toString()
         holder.binding.recyclerDateTextView.text =
             toDoList[position].timestamp.toFormat(Constants.CURRENT_DATE_FORMAT)
         holder.binding.checkbox.isChecked = toDoList[position].isDone
-        holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+        holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].categoryColor))
 
         if (toDoList[position].isDone) {
             holder.binding.recyclerNameTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
@@ -64,7 +64,7 @@ class ToDoListAdapter(val toDoList: ArrayList<ToDoUIModel>) :
             holder.binding.recyclerDateTextView.paintFlags = Paint.ANTI_ALIAS_FLAG
 
 
-            holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].typeColor))
+            holder.binding.cardView.setCardBackgroundColor(Color.parseColor(toDoList[position].categoryColor))
         }
 
         holder.binding.checkbox.setOnClickListener {
@@ -74,8 +74,9 @@ class ToDoListAdapter(val toDoList: ArrayList<ToDoUIModel>) :
                     id = toDoList[position].id,
                     name = toDoList[position].name,
                     isDone = !toDoList[position].isDone,
-                    typeColor = toDoList[position].typeColor,
-                    type = toDoList[position].type,
+                    categoryColor = toDoList[position].categoryColor,
+                    note = toDoList[position].note,
+                    categoryId = toDoList[position].categoryId,
                     timestamp = toDoList[position].timestamp
                 )
             )

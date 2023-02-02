@@ -5,12 +5,12 @@ import com.umutcansahin.todoapp.domain.repository.ToDoRepository
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetToDoByTypeUseCase @Inject constructor(
+class GetToDoByCategoryUseCase @Inject constructor(
     private val repository: ToDoRepository,
     private val mapper: ToDoEntityMapper
 ) {
 
-    operator fun invoke(type: String) = repository.getToDoByType(type = type).map { toDoList->
+    operator fun invoke(categoryId: Int) = repository.getToDoByCategory(categoryId = categoryId).map { toDoList->
         toDoList.map {
             mapper.map(entity = it)
         }

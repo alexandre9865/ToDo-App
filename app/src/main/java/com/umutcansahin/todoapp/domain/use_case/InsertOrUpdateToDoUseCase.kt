@@ -13,11 +13,12 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
         name: String,
         isInsert: Boolean,
         id: Int?,
-        type: String?,
+        categoryId: Int?,
+        note: String?,
         date: Date,
         isDone: Boolean
     ) {
-        type?.let {
+        categoryId?.let {
 
             if (isInsert && name.isNotBlank()) {
 
@@ -25,7 +26,8 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
                     toDo = ToDoEntity(
                         name = name,
                         id = id!!,
-                        type = type,
+                        categoryId = categoryId,
+                        note = note,
                         timestamp = date,
                         isDone = false
                     )
@@ -36,7 +38,8 @@ class InsertOrUpdateToDoUseCase @Inject constructor(
                     toDo = ToDoEntity(
                         name = name,
                         id = id!!,
-                        type = type,
+                        categoryId = categoryId,
+                        note = note,
                         timestamp = date,
                         isDone = isDone
                     )

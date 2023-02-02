@@ -8,10 +8,11 @@ import java.util.*
 @Parcelize
 data class ToDoUIModel(
     val id: Int,
+    val categoryId: Int,
     val name: String,
     val isDone: Boolean,
-    val type: String,
+    val note: String,
     val timestamp: Date,
-    val typeColor: String
+    val categoryColor: String
 ): Parcelable
 
